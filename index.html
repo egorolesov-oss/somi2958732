@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOMI - MVP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=20260322-99" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="ambient ambient-top"></div>
+      <div class="ambient ambient-bottom"></div>
+
+      <header class="topbar">
+        <div class="brand-lockup">
+          <img class="brand-logo" src="./assets/SOMI_LOGO_cropped.png?v=20260322-50" alt="SOMI Жіноче здоров'я" />
+        </div>
+      </header>
+
+      <main id="app"></main>
+
+      <button class="fab" id="openComposer" type="button" aria-label="Додати запис"></button>
+
+      <nav class="bottom-nav" id="bottomNav" aria-label="Основна навігація"></nav>
+    </div>
+
+    <dialog class="sheet" id="composerSheet">
+      <form class="sheet-card composer-sheet-card" method="dialog">
+        <div class="sheet-header">
+          <div>
+            <h2>Додати запис</h2>
+          </div>
+          <button class="icon-button" type="submit" aria-label="Закрити"></button>
+        </div>
+
+        <div class="sheet-section composer-section">
+          <p class="sheet-label composer-label">Швидко</p>
+          <div class="action-grid composer-all-grid" id="quickActions"></div>
+        </div>
+
+        <div class="sheet-section composer-section">
+          <p class="sheet-label composer-label">Медичне</p>
+          <div class="action-grid composer-all-grid" id="medicalActions"></div>
+        </div>
+
+        <div class="sheet-section composer-section">
+          <p class="sheet-label composer-label">Події</p>
+          <div class="action-grid composer-all-grid" id="eventActions"></div>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="sheet" id="testSheet">
+      <form class="sheet-card" method="dialog">
+        <div class="sheet-header">
+          <div>
+            <p class="eyebrow">Режим тестування</p>
+            <h2>UI-стани</h2>
+          </div>
+          <button class="icon-button" type="submit" aria-label="Закрити"></button>
+        </div>
+
+        <div class="sheet-section">
+          <p class="sheet-label">Контекст</p>
+          <div class="option-grid" id="demoContextOptions"></div>
+        </div>
+
+        <div class="sheet-section">
+          <p class="sheet-label">Дані</p>
+          <div class="option-grid" id="demoDataOptions"></div>
+        </div>
+
+        <div class="sheet-section">
+          <p class="sheet-label">Стрес-тест контенту</p>
+          <div class="option-grid" id="demoTextOptions"></div>
+        </div>
+
+        <div class="sheet-section">
+          <div class="test-footer">
+            <p class="detail-copy">Ці налаштування змінюють лише демо-стан інтерфейсу для швидкої перевірки UI.</p>
+            <button class="small-button" id="resetDemoButton" type="button">Скинути</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="sheet" id="entryDetailSheet">
+      <form class="sheet-card" method="dialog">
+        <div class="sheet-header">
+          <div>
+            <p class="eyebrow">Деталі запису</p>
+            <h2>Журнал</h2>
+          </div>
+          <button class="icon-button" type="submit" aria-label="Закрити"></button>
+        </div>
+
+        <div id="entryDetailContent"></div>
+      </form>
+    </dialog>
+
+    <dialog class="sheet" id="cycleDaySheet">
+      <form class="sheet-card" method="dialog">
+        <div class="sheet-header">
+          <div>
+            <p class="eyebrow">День у циклі</p>
+            <h2>День</h2>
+          </div>
+          <button class="icon-button" type="submit" aria-label="Закрити"></button>
+        </div>
+
+        <div id="cycleDayContent"></div>
+      </form>
+    </dialog>
+
+    <dialog class="sheet" id="recordFormSheet">
+      <form class="sheet-card" id="recordForm" method="dialog">
+        <div class="sheet-header">
+          <div>
+            <p class="eyebrow">Новий запис</p>
+            <h2 id="recordFormTitle">Додати запис</h2>
+            <p class="detail-copy" id="recordFormSubtitle"></p>
+          </div>
+          <button class="icon-button" id="closeRecordFormButton" type="button" aria-label="Закрити"></button>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-grid" id="recordExtraFieldsTop"></div>
+
+          <label class="field" id="recordValueField">
+            <span class="field-label" id="recordValueLabel">Значення</span>
+            <input id="recordValueInput" name="value" type="text" placeholder="Наприклад: короткий опис або важлива деталь" required />
+          </label>
+
+          <div class="form-grid" id="recordExtraFieldsBottom"></div>
+
+          <label class="field">
+            <span class="field-label">Дата і час</span>
+            <input id="recordDateInput" name="date" type="datetime-local" required />
+          </label>
+
+          <label class="field">
+            <span class="field-label" id="recordNoteLabel">Нотатка</span>
+            <textarea id="recordNoteInput" name="note" rows="4" placeholder="Коротка нотатка про стан або подію"></textarea>
+          </label>
+        </div>
+
+        <div class="detail-actions">
+          <button class="small-button" id="cancelRecordButton" type="button">Скасувати</button>
+          <button class="small-button primary-button" id="saveRecordButton" type="submit">Зберегти запис</button>
+        </div>
+      </form>
+    </dialog>
+
+    <template id="cardTemplate">
+      <section class="card"></section>
+    </template>
+
+    <script type="module" src="./app.js?v=20260322-99"></script>
+  </body>
+</html>
