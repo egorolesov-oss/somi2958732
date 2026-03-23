@@ -1445,6 +1445,10 @@ h1 {
   padding: 0;
   background: transparent;
   color: inherit;
+  margin-top: 10vh;
+  margin-bottom: auto;
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
 .sheet::backdrop {

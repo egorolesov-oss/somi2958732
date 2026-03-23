@@ -4583,6 +4583,7 @@ async function handleDelegatedClick(event) {
     state.selectedEntryId = target.dataset.entryId;
     renderEntryDetail();
     entryDetailSheet.showModal();
+    entryDetailSheet.scrollTop = 0;
     return;
   }
 
