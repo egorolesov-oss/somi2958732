@@ -531,7 +531,7 @@ function setBackgroundScrollLocked(locked) {
 }
 
 function syncAddRecordScrollLock() {
-  setBackgroundScrollLocked(composerSheet.open || recordFormSheet.open);
+  setBackgroundScrollLocked(composerSheet.open || recordFormSheet.open || entryDetailSheet.open || cycleDaySheet.open);
 }
 
 function getNowIso() {
@@ -4483,6 +4483,7 @@ async function handleEntryDelete(entryId) {
   await persistEntries();
   state.selectedEntryId = null;
   entryDetailSheet.close();
+  syncAddRecordScrollLock();
   render();
   showToast("Запис видалено з журналу.");
 }
@@ -4584,6 +4585,7 @@ async function handleDelegatedClick(event) {
     renderEntryDetail();
     entryDetailSheet.showModal();
     entryDetailSheet.scrollTop = 0;
+    syncAddRecordScrollLock();
     return;
   }
 
@@ -4639,6 +4641,7 @@ async function handleDelegatedClick(event) {
     window.scrollTo(0, scrollY);
     renderCycleDaySheet();
     cycleDaySheet.showModal();
+    syncAddRecordScrollLock();
     return;
   }
 
@@ -4823,6 +4826,7 @@ entryDetailSheet.addEventListener("click", (event) => {
 
   if (!isInside) {
     entryDetailSheet.close();
+    syncAddRecordScrollLock();
   }
 });
 
@@ -4838,6 +4842,9 @@ cycleDaySheet.addEventListener("click", (event) => {
     cycleDaySheet.close();
   }
 });
+
+entryDetailSheet.addEventListener("close", () => syncAddRecordScrollLock());
+cycleDaySheet.addEventListener("close", () => syncAddRecordScrollLock());
 
 recordFormSheet.addEventListener("click", (event) => {
   const rect = recordFormSheet.getBoundingClientRect();
