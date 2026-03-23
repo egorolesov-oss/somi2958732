@@ -2957,9 +2957,6 @@ function renderHome() {
             <h2 class="section-title">Сьогоднішній контекст</h2>
             <p class="section-subtitle">${context.description}</p>
           </div>
-          <button class="small-button primary-button" type="button" data-summary-trigger="true">
-            ${icon("summary", "button-icon")}Підсумок
-          </button>
         </div>
 
         <section class="card">

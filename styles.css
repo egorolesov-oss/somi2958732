@@ -1511,25 +1511,32 @@ h1 {
   gap: 6px;
 }
 
+.composer-quick-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .composer-all-grid .action-pill {
-  min-height: 55px;
-  padding: 13px 11px;
+  min-height: 48px;
+  padding: 10px 8px;
   justify-content: flex-start;
   align-items: stretch;
   border-radius: 14px;
   text-align: left;
+  overflow: hidden;
 }
 
 .composer-all-grid .action-pill-head {
-  gap: 9px;
+  gap: 6px;
   width: 100%;
   justify-content: flex-start;
   align-items: center;
 }
 
 .composer-all-grid .action-pill strong {
-  font-size: 15px;
+  font-size: 13px;
   text-align: left;
+  word-break: break-word;
+  line-height: 1.2;
 }
 
 .composer-all-grid .action-icon {
